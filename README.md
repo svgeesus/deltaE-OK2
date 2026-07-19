@@ -38,7 +38,8 @@ The full pipeline lives in [`run.js`](run.js) and is seeded, so the dataset
 
 ### Base colors
 
-`generateColors()` draws **N = 1000** base colors in CAM16-JMh:
+`generateColors()` draws **N = 1000** base colors in CAM16-JMh, using
+[Color.js](https://colorjs.io) for the color handling and gamut testing:
 
 - **J** (lightness) ~ Normal(μ = 60, σ = 20)
 - **M** (colorfulness) ~ Normal(μ = 25, σ = 20)
