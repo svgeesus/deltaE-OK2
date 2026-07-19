@@ -172,8 +172,9 @@ function symmetricTicks (domain) {
  * @param {number} [opts.size] - Square canvas side in px.
  * @returns {string} A complete <svg> document.
  */
-export function abScatterSVG ({ points, pointColors, gamuts, title, domain, size = 560 }) {
-	const m = { top: 48, right: 20, bottom: 48, left: 52 };
+export function abScatterSVG ({ points, pointColors, gamuts, title, domain, size = 840 }) {
+	const k = size / 560;   // scale factor so type, margins and marks track the canvas
+	const m = { top: 48 * k, right: 20 * k, bottom: 48 * k, left: 52 * k };
 	const plot = size - Math.max(m.left + m.right, m.top + m.bottom);
 	const ox = m.left;          // plot origin (top-left of plot box)
 	const oy = m.top;
@@ -198,8 +199,8 @@ export function abScatterSVG ({ points, pointColors, gamuts, title, domain, size
 		return `<line class="grid" x1="${x.toFixed(1)}" y1="${oy}" x2="${x.toFixed(1)}" y2="${oy + plot}"/>` +
 			`<line class="grid" x1="${ox}" y1="${y.toFixed(1)}" x2="${ox + plot}" y2="${y.toFixed(1)}"/>` +
 			(t === 0 ? "" :
-				`<text class="tick" x="${x.toFixed(1)}" y="${oy + plot + 16}" text-anchor="middle">${fmt(t)}</text>` +
-				`<text class="tick" x="${ox - 8}" y="${(y + 4).toFixed(1)}" text-anchor="end">${fmt(t)}</text>`);
+				`<text class="tick" x="${x.toFixed(1)}" y="${(oy + plot + 16 * k).toFixed(1)}" text-anchor="middle">${fmt(t)}</text>` +
+				`<text class="tick" x="${(ox - 8 * k).toFixed(1)}" y="${(y + 4 * k).toFixed(1)}" text-anchor="end">${fmt(t)}</text>`);
 	}).join("");
 
 	// Neutral axes through the origin.
@@ -208,7 +209,7 @@ export function abScatterSVG ({ points, pointColors, gamuts, title, domain, size
 		`<line class="axis" x1="${ox}" y1="${py(0).toFixed(1)}" x2="${ox + plot}" y2="${py(0).toFixed(1)}"/>`;
 
 	const colored = Array.isArray(pointColors);
-	const dotR = colored ? 2.6 : 2;
+	const dotR = ((colored ? 2.6 : 2) * k).toFixed(1);
 	const dots = points.map(([a, b], i) => {
 		// Inline style (not a fill attribute) so the per-dot color wins over the
 		// `circle { fill: var(--ink) }` CSS rule, which outranks presentation attrs.
@@ -223,9 +224,9 @@ export function abScatterSVG ({ points, pointColors, gamuts, title, domain, size
 
 	// Legend, top-left inside the plot.
 	const legend = gamuts.map((g, i) => {
-		const y = oy + 16 + i * 20;
-		return `<line class="gamut ${g.slot}" x1="${ox + 12}" y1="${y}" x2="${ox + 32}" y2="${y}"/>` +
-			`<text class="legend" x="${ox + 38}" y="${y + 4}">${g.label}</text>`;
+		const y = oy + 16 * k + i * 20 * k;
+		return `<line class="gamut ${g.slot}" x1="${(ox + 12 * k).toFixed(1)}" y1="${y.toFixed(1)}" x2="${(ox + 32 * k).toFixed(1)}" y2="${y.toFixed(1)}"/>` +
+			`<text class="legend" x="${(ox + 38 * k).toFixed(1)}" y="${(y + 4 * k).toFixed(1)}">${g.label}</text>`;
 	}).join("");
 
 	return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
@@ -243,28 +244,28 @@ export function abScatterSVG ({ points, pointColors, gamuts, title, domain, size
 			}
 		}
 		.surface { fill: var(--surface); }
-		.grid { stroke: var(--grid); stroke-width: 1; }
-		.axis { stroke: var(--axis); stroke-width: 1; }
-		.tick { fill: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+		.grid { stroke: var(--grid); stroke-width: ${k.toFixed(2)}; }
+		.axis { stroke: var(--axis); stroke-width: ${k.toFixed(2)}; }
+		.tick { fill: var(--muted); font-size: ${(12 * k).toFixed(1)}px; font-variant-numeric: tabular-nums; }
 		circle { fill: var(--ink); }
-		.gamut { fill: none; stroke-width: 2; }
+		.gamut { fill: none; stroke-width: ${(2 * k).toFixed(2)}; }
 		.gamut.g1 { stroke: var(--g1); }
 		.gamut.g2 { stroke: var(--g2); }
 		.gamut.g3 { stroke: var(--g3); }
-		.title { fill: var(--ink); font-size: 15px; font-weight: 600; }
-		.atitle { fill: var(--secondary); font-size: 13px; font-style: italic; }
-		.legend { fill: var(--secondary); font-size: 12px; }
+		.title { fill: var(--ink); font-size: ${(15 * k).toFixed(1)}px; font-weight: 600; }
+		.atitle { fill: var(--secondary); font-size: ${(13 * k).toFixed(1)}px; font-style: italic; }
+		.legend { fill: var(--secondary); font-size: ${(12 * k).toFixed(1)}px; }
 	</style>
 	<rect class="surface" x="0" y="0" width="${size}" height="${size}"/>
-	<text class="title" x="${ox}" y="26">${title}</text>
+	<text class="title" x="${ox.toFixed(1)}" y="${(26 * k).toFixed(1)}">${title}</text>
 	<clipPath id="abplot"><rect x="${ox}" y="${oy}" width="${plot}" height="${plot}"/></clipPath>
 	${grid}
 	${axes}
 	<g clip-path="url(#abplot)" fill-opacity="${colored ? 0.9 : 0.28}">${dots}</g>
 	<g clip-path="url(#abplot)">${outlines}</g>
 	${legend}
-	<text class="atitle" x="${cx.toFixed(1)}" y="${oy + plot + 34}" text-anchor="middle">a</text>
-	<text class="atitle" x="18" y="${cy.toFixed(1)}" text-anchor="middle" transform="rotate(-90 18 ${cy.toFixed(1)})">b</text>
+	<text class="atitle" x="${cx.toFixed(1)}" y="${(oy + plot + 34 * k).toFixed(1)}" text-anchor="middle">a</text>
+	<text class="atitle" x="${(18 * k).toFixed(1)}" y="${cy.toFixed(1)}" text-anchor="middle" transform="rotate(-90 ${(18 * k).toFixed(1)} ${cy.toFixed(1)})">b</text>
 </svg>
 `;
 }
