@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 380" width="580" height="380" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+	<style>
+		:root {
+			--surface: #fcfcfb; --ink: #0b0b0b; --secondary: #52514e; --muted: #898781;
+			--grid: #e1e0d9; --axis: #c3c2b7; --series: #2a78d6; --ref: #eb6834;
+		}
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--surface: #1a1a19; --ink: #ffffff; --secondary: #c3c2b7; --muted: #898781;
+				--grid: #2c2c2a; --axis: #383835; --series: #3987e5; --ref: #d95926;
+			}
+		}
+		.surface { fill: var(--surface); }
+		.grid { stroke: var(--grid); stroke-width: 1; }
+		.axis { stroke: var(--axis); stroke-width: 1; }
+		.tick { fill: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+		.bar { fill: var(--series); }
+		.ref { stroke: var(--ref); stroke-width: 2; stroke-dasharray: 4 3; }
+		.reflabel { fill: var(--ref); font-size: 12px; }
+		.title { fill: var(--ink); font-size: 15px; font-weight: 600; }
+		.atitle { fill: var(--secondary); font-size: 13px; }
+	</style>
+	<rect class="surface" x="0" y="0" width="580" height="380"/>
+	<text class="title" x="56" y="26">Kept base-color lightness (J) distribution</text>
+	<line class="grid" x1="56" y1="328.0" x2="560" y2="328.0"/><text class="tick" x="46" y="332.0" text-anchor="end">0</text><line class="grid" x1="56" y1="234.7" x2="560" y2="234.7"/><text class="tick" x="46" y="238.7" text-anchor="end">50</text><line class="grid" x1="56" y1="141.3" x2="560" y2="141.3"/><text class="tick" x="46" y="145.3" text-anchor="end">100</text><line class="grid" x1="56" y1="48.0" x2="560" y2="48.0"/><text class="tick" x="46" y="52.0" text-anchor="end">150</text>
+	<path class="bar" d="M57.0,328.0V328.0Q57.0,324.3 60.7,324.3H76.5Q80.2,324.3 80.2,328.0V328.0Z"/><path class="bar" d="M107.4,328.0V324.5Q107.4,320.5 111.4,320.5H126.6Q130.6,320.5 130.6,324.5V328.0Z"/><path class="bar" d="M132.6,328.0V317.1Q132.6,313.1 136.6,313.1H151.8Q155.8,313.1 155.8,317.1V328.0Z"/><path class="bar" d="M157.8,328.0V300.3Q157.8,296.3 161.8,296.3H177.0Q181.0,296.3 181.0,300.3V328.0Z"/><path class="bar" d="M183.0,328.0V261.1Q183.0,257.1 187.0,257.1H202.2Q206.2,257.1 206.2,261.1V328.0Z"/><path class="bar" d="M208.2,328.0V253.6Q208.2,249.6 212.2,249.6H227.4Q231.4,249.6 231.4,253.6V328.0Z"/><path class="bar" d="M233.4,328.0V216.3Q233.4,212.3 237.4,212.3H252.6Q256.6,212.3 256.6,216.3V328.0Z"/><path class="bar" d="M258.6,328.0V201.3Q258.6,197.3 262.6,197.3H277.8Q281.8,197.3 281.8,201.3V328.0Z"/><path class="bar" d="M283.8,328.0V164.0Q283.8,160.0 287.8,160.0H303.0Q307.0,160.0 307.0,164.0V328.0Z"/><path class="bar" d="M309.0,328.0V141.6Q309.0,137.6 313.0,137.6H328.2Q332.2,137.6 332.2,141.6V328.0Z"/><path class="bar" d="M334.2,328.0V132.3Q334.2,128.3 338.2,128.3H353.4Q357.4,128.3 357.4,132.3V328.0Z"/><path class="bar" d="M359.4,328.0V115.5Q359.4,111.5 363.4,111.5H378.6Q382.6,111.5 382.6,115.5V328.0Z"/><path class="bar" d="M384.6,328.0V154.7Q384.6,150.7 388.6,150.7H403.8Q407.8,150.7 407.8,154.7V328.0Z"/><path class="bar" d="M409.8,328.0V173.3Q409.8,169.3 413.8,169.3H429.0Q433.0,169.3 433.0,173.3V328.0Z"/><path class="bar" d="M435.0,328.0V186.4Q435.0,182.4 439.0,182.4H454.2Q458.2,182.4 458.2,186.4V328.0Z"/><path class="bar" d="M460.2,328.0V242.4Q460.2,238.4 464.2,238.4H479.4Q483.4,238.4 483.4,242.4V328.0Z"/><path class="bar" d="M485.4,328.0V287.2Q485.4,283.2 489.4,283.2H504.6Q508.6,283.2 508.6,287.2V328.0Z"/><path class="bar" d="M510.6,328.0V313.3Q510.6,309.3 514.6,309.3H529.8Q533.8,309.3 533.8,313.3V328.0Z"/><path class="bar" d="M535.8,328.0V328.0Q535.8,324.3 539.5,324.3H555.3Q559.0,324.3 559.0,328.0V328.0Z"/>
+	<line class="ref" x1="358.4" y1="48" x2="358.4" y2="328"/><text class="reflabel" x="358.4" y="42" text-anchor="middle">input mean 60</text>
+	<line class="axis" x1="56" y1="328" x2="560" y2="328"/>
+	<text class="tick" x="56.0" y="346" text-anchor="middle">0</text><text class="tick" x="156.8" y="346" text-anchor="middle">20</text><text class="tick" x="257.6" y="346" text-anchor="middle">40</text><text class="tick" x="358.4" y="346" text-anchor="middle">60</text><text class="tick" x="459.2" y="346" text-anchor="middle">80</text><text class="tick" x="560.0" y="346" text-anchor="middle">100</text>
+	<text class="atitle" x="308" y="368" text-anchor="middle">CAM16 lightness J</text>
+	<text class="atitle" x="16" y="188" text-anchor="middle" transform="rotate(-90 16 188)">count</text>
+</svg>

@@ -1,0 +1,12 @@
+{
+	"name": "delta-eok2",
+	"version": "1.0.0",
+	"description": "Compares ΔEOK with ΔEOK2 against ΔE2000 on CAM16 color pairs inside the BT.2020 gamut.",
+	"type": "module",
+	"scripts": {
+		"start": "node run.js"
+	},
+	"dependencies": {
+		"colorjs.io": "^0.7.0"
+	}
+}

@@ -1,5 +1,14 @@
 # Delta-EOK2
 
+## Abstract (TL;DR)
+
+ΔEOK2 — ΔEOK with the Oklab a and b axes scaled by 2 — agrees with ΔE2000
+noticeably better than ΔEOK does (r² 0.722 vs 0.642 on 5000 BT.2020 color
+pairs). Scaling the a/b axes by 2 is a measurable improvement, supporting
+Ottosson's recommendation.
+
+## Introduction
+
 This repo compares the existing ΔEOK with ΔEOK2,
 a slightly modified version which scales the a and b axes by a factor of 2
 as [recommended by Björn Ottosson](https://github.com/w3c/csswg-drafts/issues/6642#issuecomment-945096257),
@@ -21,3 +30,63 @@ generated in CAM16
 (to avoid dependence on Oklab uniformity),
 and restricted to colors inside the BT.2020 gamut
 (to avoid any wierd behavior for unrealistic or imaginary colors).
+
+## Methodology
+
+The full pipeline lives in [`run.js`](run.js) and is seeded, so the dataset
+(`pairs.csv`), regressions and plots reproduce exactly from `node run.js`.
+
+### Base colors
+
+`generateColors()` draws **N = 1000** base colors in CAM16-JMh:
+
+- **J** (lightness) ~ Normal(μ = 60, σ = 20)
+- **M** (colorfulness) ~ Normal(μ = 25, σ = 20)
+- **h** (hue) ~ uniform over [0°, 360°)
+
+A color is kept only if it is strictly inside the BT.2020 gamut; the generator
+resamples until exactly N are collected. Below, the kept colors are shown in the
+Oklab a–b plane, with the sRGB, P3 and BT.2020 gamut outlines (max-chroma
+silhouettes across all lightnesses) overlaid:
+
+![Base colors in Oklab a–b with gamut outlines](plot-gamuts-colored.svg)
+
+Because the reachable colorfulness depends on lightness and hue, gamut rejection
+skews the kept sample slightly: the kept means (J ≈ 57, M ≈ 23) sit a little
+below the input means. The dashed line marks the input mean.
+
+![Kept lightness (J) distribution](plot-J-histogram.svg)
+![Kept colorfulness (M) distribution](plot-M-histogram.svg)
+
+### Color pairs
+
+`generatePairs()` turns each base color into **S = 5** *similar* colors by
+perturbing its coordinates independently, each ~ Normal(μ = base value, σ = 4),
+with hue wrapped to [0°, 360°). Again only similar colors inside BT.2020 are
+kept, resampling until each base has exactly S — giving **N × S = 5000**
+`[base, similar]` pairs. This σ = 4 perturbation yields ΔE2000 differences
+spanning ~0–16 (mean ≈ 3.9), covering both the small differences of
+acceptability testing and the larger ones relevant to gamut mapping.
+
+For every pair the three distances — ΔE2000, ΔEOK and ΔEOK2 — are then computed
+with [Color.js](https://colorjs.io).
+
+## Results
+
+Taking ΔE2000 as the reference, each candidate metric is fit against it by
+ordinary least-squares linear regression. The higher the coefficient of
+determination (r²), the more of the ΔE2000 variation the metric explains — i.e.
+the better it agrees with ΔE2000.
+
+| Metric | Best-fit line               | r²    |
+| ------ | --------------------------- | ----- |
+| ΔEOK   | ΔE2000 = 95.10·ΔEOK + 1.03  | 0.642 |
+| ΔEOK2  | ΔE2000 = 85.37·ΔEOK2 + 0.47 | 0.722 |
+
+![ΔEOK vs ΔE2000](plot-OK.svg)
+![ΔEOK2 vs ΔE2000](plot-OK2.svg)
+
+ΔEOK2 tracks ΔE2000 more closely than ΔEOK (r² 0.722 vs 0.642): scaling the a
+and b axes by 2 measurably improves agreement with ΔE2000 on this dataset,
+supporting Ottosson's recommendation. Full per-pair figures are in
+[`regressions.json`](regressions.json).

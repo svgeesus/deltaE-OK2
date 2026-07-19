@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 380" width="580" height="380" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+	<style>
+		:root {
+			--surface: #fcfcfb; --ink: #0b0b0b; --secondary: #52514e; --muted: #898781;
+			--grid: #e1e0d9; --axis: #c3c2b7; --series: #2a78d6; --ref: #eb6834;
+		}
+		@media (prefers-color-scheme: dark) {
+			:root {
+				--surface: #1a1a19; --ink: #ffffff; --secondary: #c3c2b7; --muted: #898781;
+				--grid: #2c2c2a; --axis: #383835; --series: #3987e5; --ref: #d95926;
+			}
+		}
+		.surface { fill: var(--surface); }
+		.grid { stroke: var(--grid); stroke-width: 1; }
+		.axis { stroke: var(--axis); stroke-width: 1; }
+		.tick { fill: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+		.bar { fill: var(--series); }
+		.ref { stroke: var(--ref); stroke-width: 2; stroke-dasharray: 4 3; }
+		.reflabel { fill: var(--ref); font-size: 12px; }
+		.title { fill: var(--ink); font-size: 15px; font-weight: 600; }
+		.atitle { fill: var(--secondary); font-size: 13px; }
+	</style>
+	<rect class="surface" x="0" y="0" width="580" height="380"/>
+	<text class="title" x="56" y="26">Kept base-color colorfulness (M) distribution</text>
+	<line class="grid" x1="56" y1="328.0" x2="560" y2="328.0"/><text class="tick" x="46" y="332.0" text-anchor="end">0</text><line class="grid" x1="56" y1="258.0" x2="560" y2="258.0"/><text class="tick" x="46" y="262.0" text-anchor="end">50</text><line class="grid" x1="56" y1="188.0" x2="560" y2="188.0"/><text class="tick" x="46" y="192.0" text-anchor="end">100</text><line class="grid" x1="56" y1="118.0" x2="560" y2="118.0"/><text class="tick" x="46" y="122.0" text-anchor="end">150</text><line class="grid" x1="56" y1="48.0" x2="560" y2="48.0"/><text class="tick" x="46" y="52.0" text-anchor="end">200</text>
+	<path class="bar" d="M57.0,328.0V99.6Q57.0,95.6 61.0,95.6H76.2Q80.2,95.6 80.2,99.6V328.0Z"/><path class="bar" d="M82.2,328.0V236.8Q82.2,232.8 86.2,232.8H101.4Q105.4,232.8 105.4,236.8V328.0Z"/><path class="bar" d="M107.4,328.0V220.0Q107.4,216.0 111.4,216.0H126.6Q130.6,216.0 130.6,220.0V328.0Z"/><path class="bar" d="M132.6,328.0V190.6Q132.6,186.6 136.6,186.6H151.8Q155.8,186.6 155.8,190.6V328.0Z"/><path class="bar" d="M157.8,328.0V182.2Q157.8,178.2 161.8,178.2H177.0Q181.0,178.2 181.0,182.2V328.0Z"/><path class="bar" d="M183.0,328.0V208.8Q183.0,204.8 187.0,204.8H202.2Q206.2,204.8 206.2,208.8V328.0Z"/><path class="bar" d="M208.2,328.0V210.2Q208.2,206.2 212.2,206.2H227.4Q231.4,206.2 231.4,210.2V328.0Z"/><path class="bar" d="M233.4,328.0V229.8Q233.4,225.8 237.4,225.8H252.6Q256.6,225.8 256.6,229.8V328.0Z"/><path class="bar" d="M258.6,328.0V225.6Q258.6,221.6 262.6,221.6H277.8Q281.8,221.6 281.8,225.6V328.0Z"/><path class="bar" d="M283.8,328.0V256.4Q283.8,252.4 287.8,252.4H303.0Q307.0,252.4 307.0,256.4V328.0Z"/><path class="bar" d="M309.0,328.0V285.8Q309.0,281.8 313.0,281.8H328.2Q332.2,281.8 332.2,285.8V328.0Z"/><path class="bar" d="M334.2,328.0V294.2Q334.2,290.2 338.2,290.2H353.4Q357.4,290.2 357.4,294.2V328.0Z"/><path class="bar" d="M359.4,328.0V305.4Q359.4,301.4 363.4,301.4H378.6Q382.6,301.4 382.6,305.4V328.0Z"/><path class="bar" d="M384.6,328.0V320.8Q384.6,316.8 388.6,316.8H403.8Q407.8,316.8 407.8,320.8V328.0Z"/><path class="bar" d="M409.8,328.0V322.2Q409.8,318.2 413.8,318.2H429.0Q433.0,318.2 433.0,322.2V328.0Z"/><path class="bar" d="M435.0,328.0V327.8Q435.0,323.8 439.0,323.8H454.2Q458.2,323.8 458.2,327.8V328.0Z"/><path class="bar" d="M460.2,328.0V328.0Q460.2,325.2 463.0,325.2H480.6Q483.4,325.2 483.4,328.0V328.0Z"/><path class="bar" d="M510.6,328.0V328.0Q510.6,326.6 512.0,326.6H532.4Q533.8,326.6 533.8,328.0V328.0Z"/>
+	<line class="ref" x1="196.0" y1="48" x2="196.0" y2="328"/><text class="reflabel" x="196.0" y="42" text-anchor="middle">input mean 25</text>
+	<line class="axis" x1="56" y1="328" x2="560" y2="328"/>
+	<text class="tick" x="56.0" y="346" text-anchor="middle">0</text><text class="tick" x="168.0" y="346" text-anchor="middle">20</text><text class="tick" x="280.0" y="346" text-anchor="middle">40</text><text class="tick" x="392.0" y="346" text-anchor="middle">60</text><text class="tick" x="504.0" y="346" text-anchor="middle">80</text>
+	<text class="atitle" x="308" y="368" text-anchor="middle">CAM16 colorfulness M</text>
+	<text class="atitle" x="16" y="188" text-anchor="middle" transform="rotate(-90 16 188)">count</text>
+</svg>
