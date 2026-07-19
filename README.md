@@ -1,6 +1,6 @@
 # Delta-EOK2
 
-Comparison of the existing ΔEOK with ΔEOK2,
+This repo compares the existing ΔEOK with ΔEOK2,
 a slightly modified version which scales the a and b axes by a factor of 2
 as [recommended by Björn Ottosson](https://github.com/w3c/csswg-drafts/issues/6642#issuecomment-945096257),
 inventor of Oklab:
