@@ -74,6 +74,12 @@ with [Color.js](https://colorjs.io).
 
 ## Results
 
+ΔE2000 is generally accepted as the best color-difference metric for SDR
+colors, but is computationally
+[complex](https://www.w3.org/TR/css-color-4/#color-difference-code); ΔEOK, by
+contrast, is computationally simple. The question is how well the simpler metric
+(and its ΔEOK2 variant) can stand in for ΔE2000.
+
 Taking ΔE2000 as the reference, each candidate metric is fit against it by
 ordinary least-squares linear regression. The higher the coefficient of
 determination (r²), the more of the ΔE2000 variation the metric explains — i.e.
